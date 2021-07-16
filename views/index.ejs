@@ -1,0 +1,100 @@
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id='categories'>
+        <div id='yes'>
+            <button class='ibutton btn btn-primary' id="plusyes" onclick="plusyes()">+Yes</button>
+            <button class='ibutton btn btn-danger' id="minusyes" onclick="minusyes()">-Yes</button>
+            <p id="yesnum">0</p>
+        </div>
+        <div id="no">
+            <button class='ibutton btn btn-primary' id="plusno" onclick="plusno()">+No</button>
+            <button class='ibutton btn btn-danger' id="minusno" onclick="minusno()">-No</button>
+            <p id="nonum">0</p>
+        </div>
+        <div id="np">
+            <button class='ibutton btn btn-primary' id="plusnp" onclick="plusnp()">+NP</button>
+            <button class='ibutton btn btn-danger' id="minusnp" onclick="minusnp()">-NP</button>
+            <p id="npnum">0</p>
+        </div>
+    </div>
+    <div id="calcs">
+        <div id="cic">
+            <p><u>CIC</u></p>
+            <p id="cicnum">0.00%</p>
+        </div>
+        <div id="diff">
+            <p><u>Diff</u></p>
+            <p id="diffnum">0</p>
+        </div>
+    </div>
+    <script>
+
+
+        function calc() {
+            let yes = parseInt(document.getElementById("yesnum").innerHTML)
+            let no = parseInt(document.getElementById("nonum").innerHTML)
+            let np = parseInt(document.getElementById("npnum").innerHTML)
+
+            let denom = yes + no + np
+            if (denom == 0) {
+                denom = 1
+            }
+            let cic = ((yes / denom) * 100).toFixed(2)
+            document.getElementById("cicnum").innerHTML = String(cic) + "%"
+
+            let diff = yes - no - np
+            if (diff < 1) {
+                document.getElementById("diffnum").innerHTML = diff
+            }
+            else {
+                document.getElementById("diffnum").innerHTML = "+" + String(diff)
+            }
+
+            console.log("CIC: ", yes, '/', denom, '=', cic)
+        }
+
+
+
+        function plusyes() {
+            let num = parseInt(document.getElementById("yesnum").innerHTML)
+            document.getElementById("yesnum").innerHTML = num + 1
+            calc()
+        }
+        function minusyes() {
+            let num = parseInt(document.getElementById("yesnum").innerHTML)
+            if (num != 0) {
+                document.getElementById("yesnum").innerHTML = num - 1
+            }
+            calc()
+        }
+        function plusno() {
+            let num = parseInt(document.getElementById("nonum").innerHTML)
+            document.getElementById("nonum").innerHTML = num + 1
+            calc()
+        }
+        function minusno() {
+            let num = parseInt(document.getElementById("nonum").innerHTML)
+            if (num != 0) {
+                document.getElementById("nonum").innerHTML = num - 1
+            }
+            calc()
+        }
+        function plusnp() {
+            let num = parseInt(document.getElementById("npnum").innerHTML)
+            document.getElementById("npnum").innerHTML = num + 1
+            calc()
+        }
+        function minusnp() {
+            let num = parseInt(document.getElementById("npnum").innerHTML)
+            if (num != 0) {
+                document.getElementById("npnum").innerHTML = num - 1
+            }
+            calc()
+        }
+    </script>
+</body>

@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+}
+
+#categories {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+}
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 2em;
+    }
+    #categories {
+        grid-template-columns: 200px;
+    }
+    .ibutton {
+        font-size:1em;
+    }
+  }
