@@ -7,38 +7,38 @@
 <body>
     <div id='categories'>
         <div id='yes'>
-            <button class='ibutton btn btn-primary' id="plusyes" onclick="plusyes()">+Yes</button>
-            <button class='ibutton btn btn-danger' id="minusyes" onclick="minusyes()">-Yes</button>
-            <p id="yesnum">0</p>
+            <button class='ibutton btn btn-primary btn-block' id="plusyes" onclick="plusyes()">+Yes</button>
+            <button class='ibutton btn btn-danger btn-block' id="minusyes" onclick="minusyes()">-Yes</button>
+            <input class="form-control" oninput="calc()" id="yesnum" value="0">
         </div>
         <div id="no">
-            <button class='ibutton btn btn-primary' id="plusno" onclick="plusno()">+No</button>
-            <button class='ibutton btn btn-danger' id="minusno" onclick="minusno()">-No</button>
-            <p id="nonum">0</p>
+            <button class='ibutton btn btn-primary btn-block' id="plusno" onclick="plusno()">+No</button>
+            <button class='ibutton btn btn-danger btn-block' id="minusno" onclick="minusno()">-No</button>
+            <input class="form-control" oninput="calc()" id="nonum" value="0">
         </div>
         <div id="np">
-            <button class='ibutton btn btn-primary' id="plusnp" onclick="plusnp()">+NP</button>
-            <button class='ibutton btn btn-danger' id="minusnp" onclick="minusnp()">-NP</button>
-            <p id="npnum">0</p>
+            <button class='ibutton btn btn-primary btn-block' id="plusnp" onclick="plusnp()">+NP</button>
+            <button class='ibutton btn btn-danger btn-block' id="minusnp" onclick="minusnp()">-NP</button>
+            <input class="form-control" oninput="calc()" id="npnum" value="0">
         </div>
     </div>
     <div id="calcs">
         <div id="cic">
-            <p><u>CIC</u></p>
-            <p id="cicnum">0.00%</p>
+            <h1><u>CIC</u></h1>
+            <h2 id="cicnum">0.00%</h2>
         </div>
         <div id="diff">
-            <p><u>Diff</u></p>
-            <p id="diffnum">0</p>
+            <h1><u>Diff</u></h1>
+            <h2 id="diffnum">0</h2>
         </div>
     </div>
     <script>
 
 
         function calc() {
-            let yes = parseInt(document.getElementById("yesnum").innerHTML)
-            let no = parseInt(document.getElementById("nonum").innerHTML)
-            let np = parseInt(document.getElementById("npnum").innerHTML)
+            let yes = parseInt(document.getElementById("yesnum").value)
+            let no = parseInt(document.getElementById("nonum").value)
+            let np = parseInt(document.getElementById("npnum").value)
 
             let denom = yes + no + np
             if (denom == 0) {
@@ -61,38 +61,41 @@
 
 
         function plusyes() {
-            let num = parseInt(document.getElementById("yesnum").innerHTML)
-            document.getElementById("yesnum").innerHTML = num + 1
+            let num = parseInt(document.getElementById("yesnum").value)
+            document.getElementById("yesnum").value = num + 1
             calc()
         }
         function minusyes() {
-            let num = parseInt(document.getElementById("yesnum").innerHTML)
+            let num = parseInt(document.getElementById("yesnum").value)
             if (num != 0) {
-                document.getElementById("yesnum").innerHTML = num - 1
+                document.getElementById("yesnum").value = num - 1
             }
             calc()
         }
         function plusno() {
-            let num = parseInt(document.getElementById("nonum").innerHTML)
-            document.getElementById("nonum").innerHTML = num + 1
+            let num = parseInt(document.getElementById("nonum").value)
+            document.getElementById("nonum").value = num + 1
             calc()
         }
         function minusno() {
-            let num = parseInt(document.getElementById("nonum").innerHTML)
+            let num = parseInt(document.getElementById("nonum").value)
             if (num != 0) {
-                document.getElementById("nonum").innerHTML = num - 1
+                document.getElementById("nonum").value = num - 1
             }
             calc()
         }
+        function setno(){
+
+        }
         function plusnp() {
-            let num = parseInt(document.getElementById("npnum").innerHTML)
-            document.getElementById("npnum").innerHTML = num + 1
+            let num = parseInt(document.getElementById("npnum").value)
+            document.getElementById("npnum").value = num + 1
             calc()
         }
         function minusnp() {
-            let num = parseInt(document.getElementById("npnum").innerHTML)
+            let num = parseInt(document.getElementById("npnum").value)
             if (num != 0) {
-                document.getElementById("npnum").innerHTML = num - 1
+                document.getElementById("npnum").value = num - 1
             }
             calc()
         }

@@ -2,26 +2,29 @@ html, body {
     height: 100%;
 }
 
-html {
-    display: table;
-    margin: auto;
-}
-
 body {
-    display: table-cell;
+    padding-top: 30px;
+    padding-left: 60px;
+    background-image: url("../images/Old_Navy_Logo.png");
+    background-size: 30%;
 }
 
 #categories {
-    align-items: center;
+    margin: auto;
     display: grid;
     grid-template-columns: 300px 300px 300px;
+    grid-gap: 40px;
+}
+#on {
+    width: 40%;
+    margin: auto;
 }
 @media screen and (max-width: 600px) {
     body {
         font-size: 2em;
     }
     #categories {
-        grid-template-columns: 200px;
+        grid-template-columns: 300px;
     }
     .ibutton {
         font-size:1em;
