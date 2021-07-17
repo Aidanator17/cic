@@ -19,6 +19,10 @@ body {
     width: 40%;
     margin: auto;
 }
+#rundowngrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}
 @media screen and (max-width: 600px) {
     body {
         font-size: 2em;

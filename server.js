@@ -102,6 +102,20 @@ app.post("/", async (req, res) => {
 
 })
 
+app.get("/rundown", async (req, res) => {
+  async function getUsers() {
+    try {
+      const users = await prisma.user.findMany()
+      return users
+    } catch (err) {
+      console.log("Something went wrong",err)
+    }
+  }
+  let allusers = await getUsers()
+  console.log(allusers[0].cic)
+  res.render("rundown",{cic: allusers[0].cic})
+})
+
 
 app.listen(port, async () => {
   console.log(`🚀 Server has started on port ${port}`);
