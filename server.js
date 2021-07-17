@@ -73,26 +73,31 @@ app.post("/", async (req, res) => {
     return output
   }
   let output = getOutput()
-  async function getUsers() {
-    try {
-      const users = await prisma.user.findMany()
-      return users
-    } catch (err) {
-      console.log("Something went wrong",err)
-    }
-  }
-  let allusers = await getUsers()
-  allusers[0].cic.push(JSON.stringify(output))
+  console.log(output)
+  // async function getUsers() {
+  //   try {
+  //     const users = await prisma.user.findMany()
+  //     return users
+  //   } catch (err) {
+  //     console.log("Something went wrong",err)
+  //   }
+  // }
+  // let allusers = await getUsers()
+
+  // let f = JSON.stringify(output)
+  // console.log(f)
+  // allusers[0].cic.push(f)
+  // console.log(allusers[0].cic)
 
 
-  const updateUser = await prisma.user.update({
-    where: {
-      email: "aidan.r.christopher@gmail.com",
-    },
-    data: {
-      cic: allusers[0].cic,
-    },
-  })
+  // const updateUser = await prisma.user.update({
+  //   where: {
+  //     email: "aidan.r.christopher@gmail.com",
+  //   },
+  //   data: {
+  //     cic: allusers[0].cic,
+  //   },
+  // })
 
   res.redirect('/')
 

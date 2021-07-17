@@ -52,6 +52,11 @@
             let no = parseInt(document.getElementById("nonum").value)
             let np = parseInt(document.getElementById("npnum").value)
 
+            document.getElementById("yesnum2").value = document.getElementById("yesnum").value
+            document.getElementById("nonum2").value = document.getElementById("nonum").value
+            document.getElementById("npnum2").value = document.getElementById("npnum").value
+
+
             let denom = yes + no + np
             if (denom == 0) {
                 denom = 1
@@ -75,42 +80,36 @@
         function plusyes() {
             let num = parseInt(document.getElementById("yesnum").value)
             document.getElementById("yesnum").value = num + 1
-            document.getElementById("yesnum2").value = num + 1
             calc()
         }
         function minusyes() {
             let num = parseInt(document.getElementById("yesnum").value)
             if (num != 0) {
                 document.getElementById("yesnum").value = num - 1
-                document.getElementById("yesnum2").value = num - 1
             }
             calc()
         }
         function plusno() {
             let num = parseInt(document.getElementById("nonum").value)
             document.getElementById("nonum").value = num + 1
-            document.getElementById("nonum2").value = num + 1
             calc()
         }
         function minusno() {
             let num = parseInt(document.getElementById("nonum").value)
             if (num != 0) {
                 document.getElementById("nonum").value = num - 1
-                document.getElementById("nonum2").value = num - 1
             }
             calc()
         }
         function plusnp() {
             let num = parseInt(document.getElementById("npnum").value)
             document.getElementById("npnum").value = num + 1
-            document.getElementById("npnum2").value = num + 1
             calc()
         }
         function minusnp() {
             let num = parseInt(document.getElementById("npnum").value)
             if (num != 0) {
                 document.getElementById("npnum").value = num - 1
-                document.getElementById("npnum2").value = num - 1
             }
             calc()
         }
