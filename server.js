@@ -3,6 +3,8 @@ const session = require("express-session");
 const path = require("path");
 const passport = require("passport");
 const port = process.env.PORT || 8000;
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 const app = express();
 
@@ -42,6 +44,59 @@ app.get("/", async (req, res) => {
   res.render("index")
 })
 
+app.post("/", async (req, res) => {
+
+  function getOutput() {
+    let today = String((new Date()).getFullYear()) + "-" + String((new Date()).getMonth() + 1) + "-" + String((new Date()).getDate())
+    let denom = parseInt(req.body.yes) + parseInt(req.body.no) + parseInt(req.body.np)
+    if (denom == 0) {
+      denom = 1
+    }
+    let ocic = ((req.body.yes / denom) * 100).toFixed(2)
+    let diff = parseInt(req.body.yes) - parseInt(req.body.no) - parseInt(req.body.np)
+    let odiff
+    if (diff < 1) {
+      odiff = String(diff)
+    }
+    else {
+      odiff = "+" + String(diff)
+    }
+
+    let output = {
+      date: today,
+      yes: parseInt(req.body.yes),
+      no: parseInt(req.body.no),
+      np: parseInt(req.body.np),
+      cic: String(ocic) + "%",
+      diff: odiff
+    }
+    return output
+  }
+  let output = getOutput()
+  async function getUsers() {
+    try {
+      const users = await prisma.user.findMany()
+      return users
+    } catch (err) {
+      console.log("Something went wrong",err)
+    }
+  }
+  let allusers = await getUsers()
+  allusers[0].cic.push(JSON.stringify(output))
+
+
+  const updateUser = await prisma.user.update({
+    where: {
+      email: "aidan.r.christopher@gmail.com",
+    },
+    data: {
+      cic: allusers[0].cic,
+    },
+  })
+
+  res.redirect('/')
+
+})
 
 
 app.listen(port, async () => {

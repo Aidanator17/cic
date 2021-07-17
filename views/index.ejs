@@ -2,7 +2,8 @@
     <link rel="stylesheet" href="/css/style.css">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 </head>
 
@@ -34,6 +35,15 @@
             <h2 id="diffnum">0</h2>
         </div>
     </div>
+    <form action="/" method="POST">
+        <div style="display: none;">
+            <input name="yes" class="form-control" id="yesnum2" value="0">
+            <input name="no" class="form-control" id="nonum2" value="0">
+            <input name="np" class="form-control" id="npnum2" value="0">       
+        </div>
+        <button type="submit" class="btn btn-primary" style="color: white;">Publish</button>
+        <a class="btn btn-primary" style="color: white;">Rundown</a>
+    </form>
     <script>
 
 
@@ -65,39 +75,42 @@
         function plusyes() {
             let num = parseInt(document.getElementById("yesnum").value)
             document.getElementById("yesnum").value = num + 1
+            document.getElementById("yesnum2").value = num + 1
             calc()
         }
         function minusyes() {
             let num = parseInt(document.getElementById("yesnum").value)
             if (num != 0) {
                 document.getElementById("yesnum").value = num - 1
+                document.getElementById("yesnum2").value = num - 1
             }
             calc()
         }
         function plusno() {
             let num = parseInt(document.getElementById("nonum").value)
             document.getElementById("nonum").value = num + 1
+            document.getElementById("nonum2").value = num + 1
             calc()
         }
         function minusno() {
             let num = parseInt(document.getElementById("nonum").value)
             if (num != 0) {
                 document.getElementById("nonum").value = num - 1
+                document.getElementById("nonum2").value = num - 1
             }
             calc()
-        }
-        function setno(){
-
         }
         function plusnp() {
             let num = parseInt(document.getElementById("npnum").value)
             document.getElementById("npnum").value = num + 1
+            document.getElementById("npnum2").value = num + 1
             calc()
         }
         function minusnp() {
             let num = parseInt(document.getElementById("npnum").value)
             if (num != 0) {
                 document.getElementById("npnum").value = num - 1
+                document.getElementById("npnum2").value = num - 1
             }
             calc()
         }
