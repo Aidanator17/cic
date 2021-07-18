@@ -47,7 +47,59 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
 
   function getOutput() {
-    let today = String((new Date()).getFullYear()) + "-" + String((new Date()).getMonth() + 1) + "-" + String((new Date()).getDate())
+    function pst() {
+      let currentdate = new Date()
+      let currentmonthnum = currentdate.getMonth() + 1
+      let currentmonth
+      if (currentmonthnum == 1) {
+        currentmonth = "January"
+      }
+      else if (currentmonthnum == 2) {
+        currentmonth = "February"
+      }
+      else if (currentmonthnum == 3) {
+        currentmonth = "March"
+      }
+      else if (currentmonthnum == 4) {
+        currentmonth = "April"
+      }
+      else if (currentmonthnum == 5) {
+        currentmonth = "May"
+      }
+      else if (currentmonthnum == 6) {
+        currentmonth = "June"
+      }
+      else if (currentmonthnum == 7) {
+        currentmonth = "July"
+      }
+      else if (currentmonthnum == 8) {
+        currentmonth = "August"
+      }
+      else if (currentmonthnum == 9) {
+        currentmonth = "September"
+      }
+      else if (currentmonthnum == 10) {
+        currentmonth = "October"
+      }
+      else if (currentmonthnum == 11) {
+        currentmonth = "November"
+      }
+      else if (currentmonthnum == 12) {
+        currentmonth = "December"
+      }
+      let currentday = currentdate.getDate()
+      let currentyear = currentdate.getFullYear()
+      let currenttime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds()
+      let pststring = currentmonth + ' ' + currentday + ', ' + currentyear + ' ' + currenttime + ' GMT-07:00'
+  
+      let pstdate = new Date(pststring)
+  
+      return pstdate
+  
+  
+    }
+    let date = pst()
+    let today = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate())
     let denom = parseInt(req.body.yes) + parseInt(req.body.no) + parseInt(req.body.np)
     if (denom == 0) {
       denom = 1
@@ -78,7 +130,7 @@ app.post("/", async (req, res) => {
       const users = await prisma.user.findMany()
       return users
     } catch (err) {
-      console.log("Something went wrong",err)
+      console.log("Something went wrong", err)
     }
   }
   let allusers = await getUsers()
@@ -108,12 +160,14 @@ app.get("/rundown", async (req, res) => {
       const users = await prisma.user.findMany()
       return users
     } catch (err) {
-      console.log("Something went wrong",err)
+      console.log("Something went wrong", err)
     }
   }
+
   let allusers = await getUsers()
-  console.log(allusers[0].cic)
-  res.render("rundown",{cic: allusers[0].cic})
+  console.log(allusers[0].cic.reverse())
+
+  res.render("rundown", { cic: allusers[0].cic })
 })
 
 
