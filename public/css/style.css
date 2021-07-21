@@ -22,6 +22,7 @@ body {
 #rundowngrid{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
+    background-color: white;
 }
 @media screen and (max-width: 600px) {
     body {
