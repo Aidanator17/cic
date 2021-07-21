@@ -99,7 +99,7 @@ app.post("/", async (req, res) => {
   
     }
     let date = pst()
-    let today = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate())
+    let today = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate()-1)
     let denom = parseInt(req.body.yes) + parseInt(req.body.no) + parseInt(req.body.np)
     if (denom == 0) {
       denom = 1
