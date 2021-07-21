@@ -8,6 +8,9 @@ body {
     background-image: url("../images/Old_Navy_Logo.png");
     background-size: 30%;
 }
+#trans {
+    background-color: white;
+}
 
 #categories {
     margin: auto;

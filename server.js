@@ -22,23 +22,11 @@ app.use(
     },
   })
 );
-// Middleware for express
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// app.use((req, res, next) => {
-//   console.log(`User details are: `);
-//   console.log(req.user);
-
-//   console.log("Entire session object:");
-//   console.log(req.session);
-
-//   console.log(`Session details are: `);
-//   console.log(req.session.passport);
-//   next();
-// });
 
 app.get("/", async (req, res) => {
   res.render("index")
@@ -169,7 +157,6 @@ app.get("/rundown", async (req, res) => {
 
   res.render("rundown", { cic: allusers[0].cic })
 })
-
 
 app.listen(port, async () => {
   console.log(`🚀 Server has started on port ${port}`);

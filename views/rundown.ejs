@@ -14,15 +14,16 @@
     let totalno = 0; 
     let totalnp = 0; 
     let totaldiff = 0; 
+    let totalcic = 0;
     for (day in cic){ 
         totalyes = totalyes+JSON.parse(cic[day]).yes; 
         totaldiff = totaldiff+parseInt(JSON.parse(cic[day]).diff); 
         totalno = totalno+JSON.parse(cic[day]).no;
         totalnp = totalnp+JSON.parse(cic[day]).np;
+        totalcic = totalcic+parseInt(JSON.parse(cic[day]).cic.slice(0, -1));
         } 
         %> 
     <h4>Total CIC: <%= String(((totalyes/(totalyes+totalno+totalnp))*100).toFixed(2))+"%" %> </h4>
-    <h4>Through <%= totalyes+totalno+totalnp %> transactions</h4>
     <h4>Total Diff: <%= totaldiff %> </h4>
 <div id='rundowngrid'>
     <h4>Date</h4>
@@ -51,4 +52,12 @@
             <%= JSON.parse(cic[day]).diff %>
         </div>
             <% } %>
-</div></div></body>
+</div></div>
+<h5 id='trans'><br>Through <%= totalyes+totalno+totalnp %> transactions
+    <br>Averages (per day):
+    <br>&ensp;Trans - <%= ((totalyes+totalno+totalnp)/cic.length).toFixed(2) %>
+    <br>&ensp;CIC - <%= (totalcic/cic.length).toFixed(2) %>%
+    <br>&ensp;Yes - <%= (totalyes/cic.length).toFixed(2) %>
+    <br>&ensp;No - <%= (totalno/cic.length).toFixed(2) %>
+    <br>&ensp;NP - <%= (totalnp/cic.length).toFixed(2) %>
+</h5></body>
