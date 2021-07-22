@@ -11,7 +11,6 @@ body {
 #trans {
     background-color: white;
 }
-
 #categories {
     margin: auto;
     display: grid;
@@ -24,12 +23,13 @@ body {
 }
 #rundowngrid{
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
     background-color: white;
 }
 @media screen and (max-width: 600px) {
     body {
-        font-size: 2em;
+        margin-right: 5px;
+        margin-left: -40px;
     }
     #categories {
         grid-template-columns: 300px;

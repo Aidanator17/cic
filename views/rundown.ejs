@@ -1,9 +1,9 @@
 <head>
-    <link rel="stylesheet" href="/css/style.css">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 </head>
 <body>
@@ -32,6 +32,7 @@
     <h4>No</h4>
     <h4>NP</h4>
     <h4>Diff</h4>
+    <h4>Conv</h4>
     <% for (day in cic){ %>
         <div>
             <%= JSON.parse(cic[day]).date %>
@@ -51,10 +52,14 @@
         <div>
             <%= JSON.parse(cic[day]).diff %>
         </div>
+        <div>
+            <%= (((JSON.parse(cic[day]).yes)/(JSON.parse(cic[day]).yes+JSON.parse(cic[day]).no))*100).toFixed(2) %>%
+        </div>
             <% } %>
 </div></div>
 <h5 id='trans'><br>Through <%= totalyes+totalno+totalnp %> transactions
-    <br>Averages (per day):
+    <br>Conversion rate: <%= ((totalyes/(totalyes+totalno))*100).toFixed(2) %>%
+    <br><br>Averages (per day):
     <br>&ensp;Trans - <%= ((totalyes+totalno+totalnp)/cic.length).toFixed(2) %>
     <br>&ensp;CIC - <%= (totalcic/cic.length).toFixed(2) %>%
     <br>&ensp;Yes - <%= (totalyes/cic.length).toFixed(2) %>
