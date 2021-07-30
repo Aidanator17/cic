@@ -24,7 +24,8 @@
             <button class='ibutton btn btn-danger btn-block' id="minusnp" onclick="minusnp()">-NP</button>
             <input class="form-control" oninput="calc()" id="npnum" value="0">
         </div>
-    </div>
+    </div><br>
+    <h5 id="tottrans">0 transactions</h5>
     <div id="calcs">
         <div id="cic">
             <h1><u>CIC</u></h1>
@@ -73,6 +74,17 @@
             }
 
             console.log("CIC: ", yes, '/', denom, '=', cic)
+
+            let tottr = yes + no + np
+            if (tottr==1){
+                document.getElementById("tottrans").innerHTML = String(tottr)+" transaction"
+
+            }
+            else{
+                document.getElementById("tottrans").innerHTML = String(tottr)+" transactions"
+
+            }
+
         }
 
 
