@@ -22,10 +22,18 @@ body {
     margin: auto;
 }
 #rundowngrid{
+    height: 200px;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     background-color: white;
+    overflow-y:auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+/* Hide scrollbar for Chrome, Safari and Opera: */
+#rundowngrid::-webkit-scrollbar {
+    display: none;
+  }
 @media screen and (max-width: 600px) {
     body {
         margin-right: 5px;
