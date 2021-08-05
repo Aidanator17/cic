@@ -26,6 +26,7 @@
         </div>
     </div><br>
     <h5 id="tottrans">0 transactions</h5>
+    <span id="up">+100.00</span> <span id="down">-0.00</span>
     <div id="calcs">
         <div id="cic">
             <h1><u>CIC</u></h1>
@@ -40,7 +41,7 @@
         <div style="display: none;">
             <input name="yes" class="form-control" id="yesnum2" value="0">
             <input name="no" class="form-control" id="nonum2" value="0">
-            <input name="np" class="form-control" id="npnum2" value="0">       
+            <input name="np" class="form-control" id="npnum2" value="0">
         </div>
         <button type="submit" class="btn btn-primary" style="color: white;">Publish</button>
         <a href="/rundown" class="btn btn-primary" style="color: white;">Rundown</a>
@@ -76,14 +77,35 @@
             console.log("CIC: ", yes, '/', denom, '=', cic)
 
             let tottr = yes + no + np
-            if (tottr==1){
-                document.getElementById("tottrans").innerHTML = String(tottr)+" transaction"
+            if (tottr == 1) {
+                document.getElementById("tottrans").innerHTML = String(tottr) + " transaction"
 
             }
-            else{
-                document.getElementById("tottrans").innerHTML = String(tottr)+" transactions"
+            else {
+                document.getElementById("tottrans").innerHTML = String(tottr) + " transactions"
 
             }
+
+            let upelement = document.getElementById("up")
+            let downelement = document.getElementById("down")
+
+            let uptotal
+            let downtotal
+            if (yes + no + np != 0) {
+                uptotal = (((yes + 1) / (yes + no + np + 1)) * 100) - ((yes / (yes + no + np)) * 100)
+                downtotal = (((yes) / (yes + no + np)) * 100) - ((yes / (yes + no + np + 1)) * 100)
+                console.log(uptotal.toFixed(2), downtotal.toFixed(2))
+            }
+            else {
+                uptotal = (((yes + 1) / (yes + no + np + 1)) * 100) - ((yes / (yes + no + np + 1)) * 100)
+                downtotal = (((yes) / (yes + no + np + 1)) * 100) - ((yes / (yes + no + np + 1)) * 100)
+                console.log(uptotal.toFixed(2), downtotal.toFixed(2))
+            }
+
+
+            upelement.innerHTML = "+" + uptotal.toFixed(2)
+            downelement.innerHTML = "-" + downtotal.toFixed(2)
+
 
         }
 

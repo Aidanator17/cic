@@ -30,6 +30,12 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+#up {
+    color: darkgreen;
+}
+#down {
+    color: darkred;
+}
 /* Hide scrollbar for Chrome, Safari and Opera: */
 #rundowngrid::-webkit-scrollbar {
     display: none;
