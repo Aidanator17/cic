@@ -227,6 +227,15 @@ app.get("/retrieve/:id", async (req, res) => {
 
 })
 
+app.get("/susdelete/:id", async (req, res) => {
+  const deleteSus = await prisma.sus.delete({
+    where: {
+      id: req.params.id,
+    },
+  })
+  res.redirect("/suspensions")
+})
+
 app.listen(port, async () => {
   console.log(`🚀 Server has started on port ${port}`);
 });
