@@ -37,7 +37,8 @@
             <h2 id="diffnum">0</h2>
         </div>
     </div>
-    <form action="/" method="POST">
+    <span>
+    <form action="/" method="POST" style="display: inline;">
         <div style="display: none;">
             <input name="yes" class="form-control" id="yesnum2" value="0">
             <input name="no" class="form-control" id="nonum2" value="0">
@@ -46,14 +47,14 @@
         <button type="submit" class="btn btn-primary" style="color: white;">Publish</button>
         <a href="/rundown" class="btn btn-primary" style="color: white;">Rundown</a>
     </form>
-    <form action="/suspensions" method="POST">
+    <form action="/suspensions" method="POST"  style="display: inline;">
         <div style="display: none;">
             <input name="syes" class="form-control" id="yesnum3" value="0">
             <input name="sno" class="form-control" id="nonum3" value="0">
             <input name="snp" class="form-control" id="npnum3" value="0">
         </div>
         <button type="submit" class="btn btn-primary" style="color: white;">Suspend</button>
-    </form>
+    </form></span>
     <script>
 
 
