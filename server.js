@@ -5,6 +5,7 @@ const passport = require("passport");
 const port = process.env.PORT || 8000;
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
+const { TimezoneDate } = require("timezone-date.ts");
 
 const app = express();
 
@@ -162,7 +163,10 @@ app.post("/suspensions", async (req, res) => {
   let today = new Date()
   let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate()-1)
   console.log(todaystring)
-  console.log("!!!\n"+Date().toLocaleString("en-US", {timeZone: 'America/Vancouver'})+"\n!!!")
+  
+  const d = new TimezoneDate()
+  d.timezone = -8
+  console.log("!!!\n"+d.toString()+"\n!!!")
 
 
   const addSuspension = await prisma.sus.create({
