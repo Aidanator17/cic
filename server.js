@@ -88,7 +88,7 @@ app.post("/", async (req, res) => {
   
     }
     let date = pst()
-    let today = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate()-1)
+    let today = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate())
     let denom = parseInt(req.body.yes) + parseInt(req.body.no) + parseInt(req.body.np)
     if (denom == 0) {
       denom = 1
@@ -161,7 +161,7 @@ app.get("/rundown", async (req, res) => {
 
 app.post("/suspensions", async (req, res) => {
   let today = new Date()
-  let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate()-1)
+  let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate())
   console.log(todaystring)
   
   const d = TimezoneDate.fromDate(new Date())
