@@ -7,55 +7,56 @@
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 </head>
 
-<body>
+<body onload="calc()">
     <div id='categories'>
         <div id='yes'>
             <button class='ibutton btn btn-primary btn-block' id="plusyes" onclick="plusyes()">+Yes</button>
             <button class='ibutton btn btn-danger btn-block' id="minusyes" onclick="minusyes()">-Yes</button>
-            <input class="form-control" oninput="calc()" id="yesnum" value=<%= values.yes %> >
+            <input class="form-control" oninput="calc()" id="yesnum" value=<%=values.yes %> >
         </div>
         <div id="no">
             <button class='ibutton btn btn-primary btn-block' id="plusno" onclick="plusno()">+No</button>
             <button class='ibutton btn btn-danger btn-block' id="minusno" onclick="minusno()">-No</button>
-            <input class="form-control" oninput="calc()" id="nonum" value=<%= values.no %>>
+            <input class="form-control" oninput="calc()" id="nonum" value=<%=values.no %>>
         </div>
         <div id="np">
             <button class='ibutton btn btn-primary btn-block' id="plusnp" onclick="plusnp()">+NP</button>
             <button class='ibutton btn btn-danger btn-block' id="minusnp" onclick="minusnp()">-NP</button>
-            <input class="form-control" oninput="calc()" id="npnum" value=<%= values.np %>>
+            <input class="form-control" oninput="calc()" id="npnum" value=<%=values.np %>>
         </div>
     </div><br>
     <h5 id="tottrans">0 transactions</h5>
     <span id="up">+100.00</span> <span id="down">-0.00</span>
     <div id="calcs">
         <div id="cic">
-            <h1><u>CIC</u></h1>
-            <h2 id="cicnum">0.00%</h2>
+            <h2><u>CIC</u></h2>
+            <h3 id="cicnum">0.00%</h3>
         </div>
         <div id="diff">
-            <h1><u>Diff</u></h1>
-            <h2 id="diffnum">0</h2>
+            <h2><u>Diff</u></h2>
+            <h3 id="diffnum">0</h3>
         </div>
     </div>
-    <span>
-    <form action="/" method="POST" style="display: inline;">
-        <div style="display: none;">
-            <input name="yes" class="form-control" id="yesnum2" value=<%= values.yes %>>
-            <input name="no" class="form-control" id="nonum2" value=<%= values.no %>>
-            <input name="np" class="form-control" id="npnum2" value=<%= values.np %>>
-        </div>
-        <button type="submit" class="btn btn-primary" style="color: white;">Publish</button>
+    <div id="buttongrid">
+        <form action="/" method="POST">
+            <div style="display: none;">
+                <input name="yes" class="form-control" id="yesnum2" value=<%=values.yes %>>
+                <input name="no" class="form-control" id="nonum2" value=<%=values.no %>>
+                <input name="np" class="form-control" id="npnum2" value=<%=values.np %>>
+            </div>
+            <button type="submit" class="btn btn-primary" style="color: white; width: 100%;">Publish</button>
+        </form>
         <a href="/rundown" class="btn btn-primary" style="color: white;">Rundown</a>
-    </form>
-    <form action="/suspensions" method="POST"  style="display: inline;">
-        <div style="display: none;">
-            <input name="syes" class="form-control" id="yesnum3" value=<%= values.yes %>>
-            <input name="sno" class="form-control" id="nonum3" value=<%= values.no %>>
-            <input name="snp" class="form-control" id="npnum3" value=<%= values.np %>>
-        </div>
-        <button type="submit" class="btn btn-primary" style="color: white;">Suspend</button>
+        <form action="/suspensions" method="POST">
+            <div style="display: none;">
+                <input name="syes" class="form-control" id="yesnum3" value=<%=values.yes %>>
+                <input name="sno" class="form-control" id="nonum3" value=<%=values.no %>>
+                <input name="snp" class="form-control" id="npnum3" value=<%=values.np %>>
+            </div>
+            <button type="submit" class="btn btn-primary" style="color: white;">Suspend</button>
+        </form>
         <a href="/suspensions" class="btn btn-primary" style="color: white;">Retrieve</a>
-    </form></span>
+    </div>
     <script>
 
 
