@@ -1,0 +1,38 @@
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+</head>
+
+<body>
+    <a href="/" class="btn btn-primary" style="color: white;">Back</a>
+    <h2>Suspensions</h2>
+    <div id="susgrid">
+        <h4>Date</h4>
+        <h4>Yes</h4>
+        <h4>No</h4>
+        <h4>NP</h4>
+        <h4></h4>
+        <% for (i in list){ %>
+            <p>
+                <%= list[i].date %>
+            </p>
+            <p>
+                <%= list[i].yes %>
+            </p>
+            <p>
+                <%= list[i].no %>
+            </p>
+            <p>
+                <%= list[i].np %>
+            </p>
+            <div>
+                <a href=<%= "/retrieve/"+list[i].id %>  class="btn btn-primary" style="color: white;">Pull</a>
+                <a href=<%= "/susdelete/"+list[i].id %> class="btn btn-danger" style="color: white;">Delete</a>
+            </div>
+            <% } %>
+    </div>
+</body>

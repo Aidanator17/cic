@@ -30,7 +30,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", async (req, res) => {
-  res.render("index")
+  let values
+  if (req.query.yes==undefined) {
+    values = {
+      yes:0,
+      no:0,
+      np:0
+    }
+  }
+  else {
+    values = {
+      yes:req.query.yes,
+      no:req.query.no,
+      np:req.query.np
+    }
+  }
+  res.render("index", {values:values})
 })
 
 app.post("/", async (req, res) => {
@@ -154,7 +169,6 @@ app.get("/rundown", async (req, res) => {
   }
 
   let allusers = await getUsers()
-  console.log(allusers[0].cic.reverse())
 
   res.render("rundown", { cic: allusers[0].cic })
 })
@@ -162,11 +176,6 @@ app.get("/rundown", async (req, res) => {
 app.post("/suspensions", async (req, res) => {
   let today = new Date()
   let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate())
-  console.log(todaystring)
-  
-  const d = TimezoneDate.fromDate(new Date())
-  d.timezone = -8
-  console.log("!!!\n"+d.toString()+"\n!!!")
 
 
   const addSuspension = await prisma.sus.create({
@@ -186,13 +195,36 @@ app.get("/suspensions", async (req, res) => {
   async function getSusp() {
     try {
       const susp = await prisma.sus.findMany()
+      // console.log(susp)
       return susp
     } catch (err) {
       console.log("Something went wrong", err)
     }
   }
-  console.log(getSusp())
+  let susplist = await getSusp()
+
+  res.render("suspensions", {list:susplist})
   
+})
+
+app.get("/retrieve/:id", async (req, res) => {
+  async function findSusp() {
+    try {
+      const susp = await prisma.sus.findUnique({
+        where: {
+          id:req.params.id
+        }
+      })
+      // console.log(susp)
+      return susp
+    } catch (err) {
+      console.log("Something went wrong", err)
+    }
+  }
+  let susp = await findSusp()
+  // console.log(susp)
+  res.redirect("/?yes="+susp.yes+"&no="+susp.no+"&np="+susp.np)
+
 })
 
 app.listen(port, async () => {

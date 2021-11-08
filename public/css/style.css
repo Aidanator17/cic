@@ -30,6 +30,11 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+#susgrid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    background-color: white;
+}
 #up {
     color: darkgreen;
 }
