@@ -46,6 +46,14 @@
         <button type="submit" class="btn btn-primary" style="color: white;">Publish</button>
         <a href="/rundown" class="btn btn-primary" style="color: white;">Rundown</a>
     </form>
+    <form action="/suspensions" method="POST">
+        <div style="display: none;">
+            <input name="syes" class="form-control" id="yesnum3" value="0">
+            <input name="sno" class="form-control" id="nonum3" value="0">
+            <input name="snp" class="form-control" id="npnum3" value="0">
+        </div>
+        <button type="submit" class="btn btn-primary" style="color: white;">Suspend</button>
+    </form>
     <script>
 
 
@@ -57,6 +65,9 @@
             document.getElementById("yesnum2").value = document.getElementById("yesnum").value
             document.getElementById("nonum2").value = document.getElementById("nonum").value
             document.getElementById("npnum2").value = document.getElementById("npnum").value
+            document.getElementById("yesnum3").value = document.getElementById("yesnum").value
+            document.getElementById("nonum3").value = document.getElementById("nonum").value
+            document.getElementById("npnum3").value = document.getElementById("npnum").value
 
 
             let denom = yes + no + np

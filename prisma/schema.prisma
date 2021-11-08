@@ -12,6 +12,7 @@ generator client {
 
 model User {
   id          String @id @default(uuid())
+  eid         Int @unique
   FName       String
   LName       String
   email       String @unique
@@ -20,4 +21,15 @@ model User {
   cic         String[]
 
   @@map(name: "users")
+}
+
+model Sus {
+  id    String @id @default(uuid())
+  eid   Int
+  yes   Int
+  no    Int
+  np    Int
+  date  String
+
+  @@map("suspensions")
 }

@@ -3,7 +3,7 @@ const session = require("express-session");
 const path = require("path");
 const passport = require("passport");
 const port = process.env.PORT || 8000;
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 
 const app = express();
@@ -156,6 +156,39 @@ app.get("/rundown", async (req, res) => {
   console.log(allusers[0].cic.reverse())
 
   res.render("rundown", { cic: allusers[0].cic })
+})
+
+app.post("/suspensions", async (req, res) => {
+  let today = new Date()
+  let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate()-1)
+  console.log(todaystring)
+  console.log("!!!\n"+Date().toLocaleString("en-US", {timeZone: 'America/Vancouver'})+"\n!!!")
+
+
+  const addSuspension = await prisma.sus.create({
+    data: {
+      eid:2938068,
+      yes:parseInt(req.body.syes),
+      no:parseInt(req.body.sno),
+      np:parseInt(req.body.snp),
+      date: todaystring
+    },
+  })
+
+  res.redirect("/")
+})
+
+app.get("/suspensions", async (req, res) => {
+  async function getSusp() {
+    try {
+      const susp = await prisma.sus.findMany()
+      return susp
+    } catch (err) {
+      console.log("Something went wrong", err)
+    }
+  }
+  console.log(getSusp())
+  
 })
 
 app.listen(port, async () => {
