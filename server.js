@@ -164,7 +164,7 @@ app.post("/suspensions", async (req, res) => {
   let todaystring = String(today.getFullYear())+"-"+String(today.getMonth()+1)+"-"+String(today.getDate()-1)
   console.log(todaystring)
   
-  const d = new TimezoneDate()
+  const d = TimezoneDate.fromDate(new Date())
   d.timezone = -8
   console.log("!!!\n"+d.toString()+"\n!!!")
 
