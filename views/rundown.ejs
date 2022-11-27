@@ -44,9 +44,6 @@
                         <%= JSON.parse(cic[day]).np %>
                     </div>
                     <div>
-                        <%= JSON.parse(cic[day]).diff %>
-                    </div>
-                    <div>
                         <%= (((JSON.parse(cic[day]).yes)/(JSON.parse(cic[day]).yes+JSON.parse(cic[day]).no))*100).toFixed(2)
                             %>%
                     </div>
