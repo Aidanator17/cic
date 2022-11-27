@@ -24,11 +24,14 @@ body {
 #rundowngrid{
     height: 200px;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     background-color: white;
     overflow-y:auto;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+#totals{
+    background-color: white;
 }
 #susgrid {
     display: grid;

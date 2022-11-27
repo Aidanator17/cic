@@ -20,8 +20,8 @@
             <input class="form-control" oninput="calc()" id="nonum" value=<%=values.no %>>
         </div>
         <div id="np">
-            <button class='ibutton btn btn-primary btn-block' id="plusnp" onclick="plusnp()">+NP</button>
-            <button class='ibutton btn btn-danger btn-block' id="minusnp" onclick="minusnp()">-NP</button>
+            <button class='ibutton btn btn-primary btn-block' id="plusnp" onclick="plusnp()">+SU</button>
+            <button class='ibutton btn btn-danger btn-block' id="minusnp" onclick="minusnp()">-SU</button>
             <input class="form-control" oninput="calc()" id="npnum" value=<%=values.np %>>
         </div>
     </div><br>
@@ -29,12 +29,12 @@
     <span id="up">+100.00</span> <span id="down">-0.00</span>
     <div id="calcs">
         <div id="cic">
-            <h2><u>CIC</u></h2>
+            <h2><u>Loyalty</u></h2>
             <h3 id="cicnum">0.00%</h3>
         </div>
         <div id="diff">
-            <h2><u>Diff</u></h2>
-            <h3 id="diffnum">0</h3>
+            <h2><u>Usage</u></h2>
+            <h3 id="diffnum">0.00%</h3>
         </div>
     </div>
     <div id="buttongrid">
@@ -79,14 +79,7 @@
             }
             let cic = ((yes / denom) * 100).toFixed(2)
             document.getElementById("cicnum").innerHTML = String(cic) + "%"
-
-            let diff = yes - no - np
-            if (diff < 1) {
-                document.getElementById("diffnum").innerHTML = diff
-            }
-            else {
-                document.getElementById("diffnum").innerHTML = "+" + String(diff)
-            }
+            document.getElementById("diffnum").innerHTML = String((((yes+np) / denom) * 100).toFixed(2)) + "%"
 
             console.log("CIC: ", yes, '/', denom, '=', cic)
 

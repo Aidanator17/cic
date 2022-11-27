@@ -2,67 +2,63 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 </head>
+
 <body>
     <div id='main'>
-    <a href="/" class="btn btn-primary" style="color: white;">Back</a>
-    <% 
-    let totalyes = 0; 
-    let totalno = 0; 
-    let totalnp = 0; 
-    let totaldiff = 0; 
-    let totalcic = 0;
-    for (day in cic){ 
-        totalyes = totalyes+JSON.parse(cic[day]).yes; 
-        totaldiff = totaldiff+parseInt(JSON.parse(cic[day]).diff); 
-        totalno = totalno+JSON.parse(cic[day]).no;
-        totalnp = totalnp+JSON.parse(cic[day]).np;
-        totalcic = totalcic+parseInt(JSON.parse(cic[day]).cic.slice(0, -1));
-        } 
-        %> 
-    <h4>Total CIC: <%= String(((totalyes/(totalyes+totalno+totalnp))*100).toFixed(2))+"%" %> </h4>
-    <h4>Total Diff: <%= totaldiff %> </h4>
-<div id='rundowngrid'>
-    <h4>Date</h4>
-    <h4>CIC</h4>
-    <h4>Yes</h4>
-    <h4>No</h4>
-    <h4>NP</h4>
-    <h4>Diff</h4>
-    <h4>Conv</h4>
-    <% for (day in cic){ %>
-        <div>
-            <%= JSON.parse(cic[day]).date %>
-        </div>
-        <div>
-            <%= JSON.parse(cic[day]).cic %>
-        </div>
-        <div>
-            <%= JSON.parse(cic[day]).yes %>
-        </div>
-        <div>
-            <%= JSON.parse(cic[day]).no %>
-        </div>
-        <div>
-            <%= JSON.parse(cic[day]).np %>
-        </div>
-        <div>
-            <%= JSON.parse(cic[day]).diff %>
-        </div>
-        <div>
-            <%= (((JSON.parse(cic[day]).yes)/(JSON.parse(cic[day]).yes+JSON.parse(cic[day]).no))*100).toFixed(2) %>%
-        </div>
-            <% } %>
-</div></div>
-<h5 id='trans'><br>Through <%= totalyes+totalno+totalnp %> transactions
-    <br>Conversion rate: <%= ((totalyes/(totalyes+totalno))*100).toFixed(2) %>%
-    <br><br>Averages (per day):
-    <br>&ensp;Trans - <%= ((totalyes+totalno+totalnp)/cic.length).toFixed(2) %>
-    <br>&ensp;CIC - <%= (totalcic/cic.length).toFixed(2) %>%
-    <br>&ensp;Yes - <%= (totalyes/cic.length).toFixed(2) %>
-    <br>&ensp;No - <%= (totalno/cic.length).toFixed(2) %>
-    <br>&ensp;NP - <%= (totalnp/cic.length).toFixed(2) %>
-</h5></body>
+        <a href="/" class="btn btn-primary" style="color: white;">Back</a>
+        <% let totalyes=0; let totalno=0; let totalnp=0; let totaldiff=0; let totalcic=0; for (day in cic){
+            totalyes=totalyes+JSON.parse(cic[day]).yes; totaldiff=totaldiff+parseInt(JSON.parse(cic[day]).diff);
+            totalno=totalno+JSON.parse(cic[day]).no; totalnp=totalnp+JSON.parse(cic[day]).np;
+            totalcic=totalcic+parseInt(JSON.parse(cic[day]).cic.slice(0, -1)); } %>
+            <div id="totals">
+                <h4>Through <%= totalyes+totalno+totalnp %> transactions,</h4>
+                <h4>Usage rate: <%= ((totalyes/(totalyes+totalno))*100).toFixed(2) %>%</h4>
+                <h4>Total Loyalty: <%= String(((totalyes/(totalyes+totalno+totalnp))*100).toFixed(2))+"%" %>
+                </h4>
+            </div>
+            <div id='rundowngrid'>
+                <h4>Date</h4>
+                <h4>Loyalty</h4>
+                <h4>Yes</h4>
+                <h4>No</h4>
+                <h4>SU</h4>
+                <h4>Usage</h4>
+                <% for (day in cic){ %>
+                    <div>
+                        <%= JSON.parse(cic[day]).date %>
+                    </div>
+                    <div>
+                        <%= JSON.parse(cic[day]).cic %>
+                    </div>
+                    <div>
+                        <%= JSON.parse(cic[day]).yes %>
+                    </div>
+                    <div>
+                        <%= JSON.parse(cic[day]).no %>
+                    </div>
+                    <div>
+                        <%= JSON.parse(cic[day]).np %>
+                    </div>
+                    <div>
+                        <%= JSON.parse(cic[day]).diff %>
+                    </div>
+                    <div>
+                        <%= (((JSON.parse(cic[day]).yes)/(JSON.parse(cic[day]).yes+JSON.parse(cic[day]).no))*100).toFixed(2)
+                            %>%
+                    </div>
+                    <% } %>
+            </div>
+    </div>
+    <h5 id='trans'>
+        <br><br>Averages (per day):
+        <br>&ensp;Trans - <%= ((totalyes+totalno+totalnp)/cic.length).toFixed(2) %>
+            <br>&ensp;Loyalty - <%= (totalcic/cic.length).toFixed(2) %>%
+                <br>&ensp;Yes - <%= (totalyes/cic.length).toFixed(2) %>
+                    <br>&ensp;No - <%= (totalno/cic.length).toFixed(2) %>
+                        <br>&ensp;SU - <%= (totalnp/cic.length).toFixed(2) %>
+    </h5>
+</body>
